@@ -40,18 +40,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *                  ROW2COL = ROW = Anode (+), COL = Cathode (-, marked on diode)
  *
  */
+/* All columns are expanded */
+#define COL_EXPANDED { true, true, true, true }
+#define MATRIX_COL_PINS { GPA0, GPA1, GPA2, GPA3 }
 #define MATRIX_ROW_PINS { D0, D1, D5, D6, D7 }
-// TODO: Switch to ISL31FL3731
-#define MATRIX_COL_PINS { B0, B1, B2, C2 }
 #define UNUSED_PINS
 
 /* COL2ROW, ROW2COL */
 #define DIODE_DIRECTION COL2ROW
 
+/* Bluetooth Control Pins */
+//  TODO: Support bluetooth
+#define AdafruitBleResetPin D4
+#define AdafruitBleCSPin    C0 // A0
+#define AdafruitBleIRQPin   C1 // A1
+
 /*
  * Split Keyboard specific options, make sure you have 'SPLIT_KEYBOARD = yes' in your rules.mk, and define SOFT_SERIAL_PIN.
  */
-#define SOFT_SERIAL_PIN D0  // or D1, D2, D3, E6
+// #define SOFT_SERIAL_PIN D0  // or D1, D2, D3, E6
 
 //#define LED_NUM_LOCK_PIN B0
 //#define LED_CAPS_LOCK_PIN B1

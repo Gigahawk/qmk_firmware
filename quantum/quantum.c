@@ -328,13 +328,13 @@ bool process_record_quantum(keyrecord_t *record) {
 #endif
 #ifdef BLUETOOTH_ENABLE
             case OUT_AUTO:
-                set_output(OUTPUT_AUTO);
+                //set_output(OUTPUT_AUTO);
                 return false;
             case OUT_USB:
-                set_output(OUTPUT_USB);
+                //set_output(OUTPUT_USB);
                 return false;
             case OUT_BT:
-                set_output(OUTPUT_BLUETOOTH);
+                //set_output(OUTPUT_BLUETOOTH);
                 return false;
 #endif
         }
