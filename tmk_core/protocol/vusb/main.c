@@ -31,6 +31,15 @@
 #    include "sleep_led.h"
 #endif
 
+#ifdef BLUETOOTH_ENABLE
+#    include "outputselect.h"
+#    ifdef MODULE_ADAFRUIT_BLE
+#        include "adafruit_ble.h"
+#    else
+#        include "../serial.h"
+#    endif
+#endif
+
 #ifdef CONSOLE_ENABLE
 void console_task(void);
 #endif
@@ -151,6 +160,10 @@ int main(void) {
             if (usbConfiguration && usbInterruptIsReady3()) {
                 console_task();
             }
+#endif
+
+#ifdef MODULE_ADAFRUIT_BLE
+            adafruit_ble_task();
 #endif
 
             // Run housekeeping
