@@ -4,10 +4,16 @@
 #define _GAME 1
 #define _TRAN 2
 
-#define _BASE_COLOR 156, 123, 85
-#define _GAME_COLOR 147, 21,  21
-#define _TRAN_COLOR 45,  89,  24
-#define _CAPS_COLOR 146, 140, 16
+#define _BASE_COLOR_RGB 156, 123, 85
+#define _GAME_COLOR_RGB 147, 21,  21
+#define _TRAN_COLOR_RGB 45,  89,  24
+#define _CAPS_COLOR_RGB 146, 140, 16
+
+#define _BASE_COLOR_HSV 23,  116, 156
+#define _GAME_COLOR_HSV 0,   219, 147
+#define _TRAN_COLOR_HSV 44,  89,  23
+#define _CAPS_COLOR_HSV 41,  227, 146
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -50,18 +56,18 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 }
 
 void rgb_matrix_indicators_user(void) {
-    if (IS_LAYER_ON(_BASE)) {
-        rgb_matrix_set_color_all(_BASE_COLOR);
+    if (IS_LAYER_ON(_TRAN)) {
+        rgb_matrix_set_color_all(_TRAN_COLOR_RGB);
     } else if (IS_LAYER_ON(_GAME)) {
-        rgb_matrix_set_color_all(_GAME_COLOR);
-    } else if (IS_LAYER_ON(_TRAN)) {
-        rgb_matrix_set_color_all(_TRAN_COLOR);
+        rgb_matrix_set_color_all(_GAME_COLOR_RGB);
+    } else if (IS_LAYER_ON(_BASE)) {
+        rgb_matrix_set_color_all(_BASE_COLOR_RGB);
     }
 
     if (host_keyboard_led_state().caps_lock) {
         for (uint8_t i = 0; i < DRIVER_LED_TOTAL; ++i) {
             if (HAS_ANY_FLAGS(g_led_config.flags[i], LED_FLAG_UNDERGLOW)) {
-                rgb_matrix_set_color(i, _CAPS_COLOR);
+                rgb_matrix_set_color(i, _CAPS_COLOR_RGB);
             }
         }
     }
