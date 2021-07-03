@@ -34,6 +34,7 @@
 
 #define AW_REG_CONFIGURATION 0x00  // PG0
 #define AW_REG_GLOBALCURRENT 0x01  // PG0
+#define AW_REG_ASDF 0x023          // PG0
 
 // Default value of AW_REG_CONFIGURATION
 // D7:D4 = 1011, SWSEL (SW1~SW12 active)
