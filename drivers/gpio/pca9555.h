@@ -1,19 +1,10 @@
-/* Copyright 2019
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright 2020 zvecr<git@zvecr.com>
+// SPDX-License-Identifier: GPL-2.0-or-later
+
 #pragma once
+
+#include <stdint.h>
+#include <stdbool.h>
 
 /*
             PCA9555
@@ -48,10 +39,12 @@
 
 void pca9555_init(uint8_t slave_addr);
 
-void pca9555_set_config(uint8_t slave_addr, uint8_t port, uint8_t conf);
+bool pca9555_set_config(uint8_t slave_addr, uint8_t port, uint8_t conf);
 
-void pca9555_set_output(uint8_t slave_addr, uint8_t port, uint8_t conf);
+bool pca9555_set_output_all(uint8_t slave_addr, uint8_t confA, uint8_t confB);
 
-uint8_t pca9555_readPins(uint8_t slave_addr, uint8_t port);
+bool pca9555_set_output(uint8_t slave_addr, uint8_t port, uint8_t conf);
 
-uint16_t pca9555_readAllPins(uint8_t slave_addr);
+bool pca9555_readPins(uint8_t slave_addr, uint8_t port, uint8_t* ret);
+
+bool pca9555_readAllPins(uint8_t slave_addr, uint16_t* ret);
