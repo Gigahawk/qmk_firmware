@@ -47,4 +47,4 @@ bool pca9555_set_output(uint8_t slave_addr, uint8_t port, uint8_t conf);
 
 bool pca9555_readPins(uint8_t slave_addr, uint8_t port, uint8_t* ret);
 
-bool pca9555_readAllPins(uint8_t slave_addr, uint16_t* ret);
+bool pca9555_readPins_all(uint8_t slave_addr, uint16_t* ret);

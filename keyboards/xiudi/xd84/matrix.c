@@ -54,7 +54,7 @@ static uint16_t read_cols(void) {
     // uint16_t state_1 = pca9555_readPins(IC2, PCA9555_PORT0);
     // uint16_t state_2 = pca9555_readPins(IC2, PCA9555_PORT1);
     uint16_t state = 0;
-    pca9555_readAllPins(IC2, &state);
+    pca9555_readPins_all(IC2, &state);
 
     // For the XD84 all cols are on the same IC and mapped sequentially
     // while this technically gives 16 column reads,
