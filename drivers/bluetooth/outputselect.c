@@ -16,6 +16,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #if defined(PROTOCOL_LUFA)
 #    include "lufa.h"
+#elif defined(PROTOCOL_CHIBIOS)
+#    include "usb_main.h"
 #endif
 
 #ifdef MODULE_ADAFRUIT_BLE
@@ -42,6 +44,10 @@ __attribute__((weak)) void set_output_user(uint8_t output) {}
 static bool is_usb_configured(void) {
 #if defined(PROTOCOL_LUFA)
     return USB_DeviceState == DEVICE_STATE_Configured;
+#elif defined(PROTOCOL_CHIBIOS)
+    return USB_DRIVER.state == USB_ACTIVE;
+#else
+    return true;
 #endif
 }
 
