@@ -34,6 +34,12 @@ void keyboard_post_init_user(void) {
     // debug_mouse=true;
 }
 
+bool led_update_user(led_t led_state) {
+    sethsv(0, 100, 2, (LED_TYPE *)&led[0]);
+    rgblight_set();
+    return true;
+}
+
 #ifdef OLED_ENABLE
 bool oled_task_user(void) {
     // Host Keyboard Layer Status

@@ -47,12 +47,21 @@
  */
 // #define SOFT_SERIAL_PIN C6  // or D1, D2, D3, E6
 
-// I2C Setup for GPIO Expander
+// Neopixel config
+#define RGB_DI_PIN C0
+#define RGBLED_NUM 1
+
+#define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_STATIC_LIGHT
+#define RGBLIGHT_DEFAULT_HUE 0
+#define RGBLIGHT_DEFAULT_SAT 255
+#define RGBLIGHT_DEFAULT_VAL 1
+
+// I2C config for GPIO Expander
 #define I2C_DRIVER I2CD1
 #define I2C1_SCL_PIN B6
 #define I2C1_SDA_PIN B7
 
-// SPI setup for Bluefruit
+// SPI config for Bluefruit
 #define SPI_DRIVER SPID2
 #define SPI_SCK_PIN B13
 #define SPI_MOSI_PIN B15

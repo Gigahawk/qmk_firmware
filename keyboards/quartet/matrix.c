@@ -87,6 +87,9 @@ static bool read_cols_on_row(matrix_row_t current_matrix[], uint8_t current_row)
 //_____CUSTOM MATRIX IMPLEMENTATION____________________________________________________
 
 void matrix_init_custom(void) {
+    // Reset EEPROM
+    eeconfig_init();
+
     init_pins();
     init_pins_MCP23017();
     print("matrix_init_custom done\n");
