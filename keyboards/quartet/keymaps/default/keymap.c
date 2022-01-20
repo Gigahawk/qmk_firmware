@@ -34,6 +34,15 @@ void keyboard_post_init_user(void) {
     // debug_mouse=true;
 }
 
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    if (clockwise) {
+        tap_code(KC_VOLU);
+    } else {
+        tap_code(KC_VOLD);
+    }
+    return true;
+}
+
 bool led_update_user(led_t led_state) {
     sethsv(0, 100, 2, (LED_TYPE *)&led[0]);
     rgblight_set();

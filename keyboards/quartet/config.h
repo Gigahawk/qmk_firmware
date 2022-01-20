@@ -42,6 +42,15 @@
 /* COL2ROW, ROW2COL */
 // #define DIODE_DIRECTION COL2ROW
 
+// Encoder config
+// KiCAD Generic Feather Name: { A5, A4 }
+// Feather STM32F405 Name:     { A5, A4 }
+// STM32F405 Name:             { C5, C4 }
+#define ENCODERS_PAD_A \
+    { C5 }
+#define ENCODERS_PAD_B \
+    { C4 }
+
 /*
  * Split Keyboard specific options, make sure you have 'SPLIT_KEYBOARD = yes' in your rules.mk, and define SOFT_SERIAL_PIN.
  */
