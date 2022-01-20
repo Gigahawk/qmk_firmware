@@ -10,22 +10,49 @@
 #define TIMEOUT 100
 
 enum {
-    CMD_IODIRA = 0x00,  // i/o direction register
-    CMD_IODIRB = 0x01,
-    CMD_GPPUA  = 0x0C,  // GPIO pull-up resistor register
-    CMD_GPPUB  = 0x0D,
-    CMD_GPIOA  = 0x12,  // general purpose i/o port register (write modifies OLAT)
-    CMD_GPIOB  = 0x13,
+    CMD_IODIRA      = 0x00,  // i/o direction register
+    CMD_IODIRB      = 0x01,
+    CMD_GPPUA       = 0x0C,  // GPIO pull-up resistor register
+    CMD_GPPUB       = 0x0D,
+    CMD_GPIOA       = 0x12,  // general purpose i/o port register (write modifies OLAT)
+    CMD_GPIOB       = 0x13,
+    CMD_IOCON_BANK1 = 0x05,  // IOCON address when IOCON.BANK = 1
+    CMD_IOCON       = 0x0A,  // Regular IOCON address
 };
 
-void mcp23018_init(uint8_t addr) {
+bool mcp23018_init(uint8_t slave_addr) {
     static uint8_t s_init = 0;
+    uint8_t        addr   = SLAVE_TO_ADDR(slave_addr);
+    uint8_t        conf   = 0;
+    uint8_t        cmd;
+    i2c_status_t   ret;
     if (!s_init) {
         i2c_init();
         wait_ms(1000);
 
         s_init = 1;
     }
+
+    // While IOCON.BANK (and the rest of IOCON) is supposed to be 0 on POR,
+    // it appears that this is not guaranteed.
+    // We want to zero the IOCON register to make sure we are in a known state.
+    // Address CMD_IOCON_BANK1 points to GPINTENB when IOCON.BANK = 0;
+    // both registers are safe to zero during initialization.
+    cmd = CMD_IOCON_BANK1;
+    ret = i2c_writeReg(addr, cmd, &conf, sizeof(conf), TIMEOUT);
+    if (ret != I2C_STATUS_SUCCESS) {
+        dprintf("mcp23018_init::IOCONBANK1FAILED::%u\n", ret);
+        return false;
+    }
+
+    wait_ms(1);
+    cmd = CMD_IOCON;
+    ret = i2c_writeReg(addr, cmd, &conf, sizeof(conf), TIMEOUT);
+    if (ret != I2C_STATUS_SUCCESS) {
+        dprintf("mcp23018_init::IOCONBANK0FAILED::%u\n", ret);
+        return false;
+    }
+    return true;
 }
 
 bool mcp23018_set_config(uint8_t slave_addr, mcp23018_port_t port, uint8_t conf) {
