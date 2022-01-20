@@ -26,23 +26,31 @@
  *                  ROW2COL = ROW = Anode (+), COL = Cathode (-, marked on diode)
  *
  */
-// KiCAD Generic Feather Names: {D0, D1, D2, D3, A1}
-// Feather STM32F405 Names    : { 5,  6,  9, 10, A1}
-// STM32F405 Names            : {C7, C6, B8, B9, A5}
+// KiCAD Generic Feather Names: { D0, D1, D2, D3, A1 }
+// Feather STM32F405 Names    : {  5,  6,  9, 10, A1 }
+// STM32F405 Names            : { C7, C6, B8, B9, A5 }
 #define MATRIX_ROW_PINS \
     { C7, C6, B8, B9, A5 }
 
-#define MATRIX_COL_PINS \
-    { C1, C2, C3, C4 }
+// KiCAD Generic Feather Names: { A2, A3, A4, A5 }
+// Feather STM32F405 Names    : { A2, A3, A4, A5 }
+// STM32F405 Names            : { A6, A7, C4, C5 }
+// #define MATRIX_COL_PINS { A6, A7, C4, C5 }
+
 #define UNUSED_PINS
 
 /* COL2ROW, ROW2COL */
-#define DIODE_DIRECTION COL2ROW
+// #define DIODE_DIRECTION COL2ROW
 
 /*
  * Split Keyboard specific options, make sure you have 'SPLIT_KEYBOARD = yes' in your rules.mk, and define SOFT_SERIAL_PIN.
  */
-#define SOFT_SERIAL_PIN C6  // or D1, D2, D3, E6
+// #define SOFT_SERIAL_PIN C6  // or D1, D2, D3, E6
+
+// I2C Setup for GPIO Expander
+#define I2C_DRIVER I2CD1
+#define I2C1_SCL_PIN B6
+#define I2C1_SDA_PIN B7
 
 //#define LED_NUM_LOCK_PIN B0
 //#define LED_CAPS_LOCK_PIN B1
