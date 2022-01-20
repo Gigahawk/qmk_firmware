@@ -52,6 +52,34 @@
 #define I2C1_SCL_PIN B6
 #define I2C1_SDA_PIN B7
 
+// SPI setup for Bluefruit
+#define SPI_DRIVER SPID2
+#define SPI_SCK_PIN B13
+#define SPI_MOSI_PIN B15
+#define SPI_MISO_PIN B14
+
+// KiCAD Generic Feather Name: D4
+// Feather STM32F405 Name: 11
+// STM32F405 Name: C3
+#define ADAFRUIT_BLE_RST_PIN C3
+
+// KiCAD Generic Feather Name: D6
+// Feather STM32F405 Name: 13
+// STM32F405 Name: C1
+#define ADAFRUIT_BLE_CS_PIN C1
+
+// KiCAD Generic Feather Name: D5
+// Feather STM32F405 Name: 12
+// STM32F405 Name: C2
+#define ADAFRUIT_BLE_IRQ_PIN C2
+
+#define ADAFRUIT_BLE_SCK_DIVISOR 32
+
+// KiCAD Generic Feather Name: A0
+// Feather STM32F405 Name: A0
+// STM32F405 Name: A4
+#define BATTERY_LEVEL_PIN A4
+
 //#define LED_NUM_LOCK_PIN B0
 //#define LED_CAPS_LOCK_PIN B1
 //#define LED_SCROLL_LOCK_PIN B2
