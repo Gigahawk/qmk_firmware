@@ -65,6 +65,14 @@
 #define RGBLIGHT_DEFAULT_SAT 255
 #define RGBLIGHT_DEFAULT_VAL 1
 
+// LED driver config
+#define LED_DRIVER_ADDR_1 0b1110100
+#define LED_DRIVER_COUNT 1
+#define LED_DRIVER_1_LED_TOTAL 17
+#define DRIVER_LED_TOTAL LED_DRIVER_1_LED_TOTAL
+#define LED_MATRIX_CENTER \
+    { 3, 4 }
+
 // I2C config for GPIO Expander
 #define I2C_DRIVER I2CD1
 #define I2C1_SCL_PIN B6

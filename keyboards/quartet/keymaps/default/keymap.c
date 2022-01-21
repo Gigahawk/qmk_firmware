@@ -49,6 +49,8 @@ bool led_update_user(led_t led_state) {
     return true;
 }
 
+void led_matrix_indicators_user(void) { led_matrix_set_value_all(255); }
+
 #ifdef OLED_ENABLE
 bool oled_task_user(void) {
     // Host Keyboard Layer Status
