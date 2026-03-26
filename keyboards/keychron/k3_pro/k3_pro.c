@@ -75,6 +75,10 @@ bool process_record_kb_bt(uint16_t keycode, keyrecord_t *record) {
 #else
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 #endif
+    if (!process_record_user(keycode, record)) {
+        return false;
+    }
+
     static uint8_t host_idx = 0;
 
     switch (keycode) {
